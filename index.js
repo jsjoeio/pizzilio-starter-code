@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const express = require('express');
 const accountSid = process.env.ACCOUNT_SID
 const authToken = process.env.AUTH_TOKEN
+const twilioNumber = process.env.TWILIO_NUMBER
 const client = require('twilio')(accountSid, authToken)
 
 const app = express();
@@ -40,7 +41,7 @@ function sendText(message, number) {
   client.messages
     .create({
       to: number,
-      from: process.env.TWILIO_NUMBER,
+      from: twilioNumber,
       body: message
     })
     .then(message => console.log(message.sid))
