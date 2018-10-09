@@ -40,7 +40,7 @@ function sendText(message, number) {
   client.messages
     .create({
       to: number,
-      from: '+17343596419',
+      from: process.env.TWILIO_NUMBER,
       body: message
     })
     .then(message => console.log(message.sid))
